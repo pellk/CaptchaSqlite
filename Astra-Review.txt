@@ -1,0 +1,9 @@
+  6. Validate configuration and rendered bounds. The settings at Captcha.cs:13 allow invalid dimensions, unsupported digit counts, and missing font paths. Ten digits already
+     exceed the current int generation range. Fixed font sizing can produce negative spacing, and placement uses bounds measured before rotation, risking clipping. Validate
+     settings once and lay out glyphs using their transformed bounds.
+
+  8. Add focused tests and improve the usage example. I found no tests. Start with simultaneous validation, replay, malformed input, leading zeros, expiration, attempt
+     exhaustion, and clipping. The README:5 (README.md:5) also references an undefined configuration variable. Document rate limiting, refresh behavior, and an accessible
+     alternative to the image challenge.
+
+  My first implementation pass would cover items 1–5, followed by rendering safeguards and API cleanup.
